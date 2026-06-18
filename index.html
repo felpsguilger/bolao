@@ -358,7 +358,7 @@
   <section class="view" id="v-editor">
     <div class="eyebrow">O jeito mais rápido de manter o bolão vivo</div>
     <h2 class="sec">Atualizar resultados</h2>
-    <p class="lede">Digite o placar real de cada jogo aqui, sem abrir o Excel, e o painel recalcula tudo na hora. Quando terminar os jogos do dia, clique em <b style="color:var(--gold)">Baixar painel atualizado</b> e suba esse arquivo no seu link (Netlify/GitHub) ou mande no grupo. É esse arquivo baixado que carrega os números novos.</p>
+    <p class="lede">Digite o placar de cada jogo e clique em <b>Salvar</b>. O painel recalcula tudo na hora. Pra publicar a versão nova, clique em <b style="color:var(--gold)">Baixar painel atualizado</b>.</p>
     <div class="ed-actions">
       <button class="ubtn" id="dlbtn2" style="background:var(--gold)">💾 Baixar painel atualizado</button>
       <span id="edstatus" style="font-size:13px;font-weight:600;color:var(--muted)"></span>
@@ -777,9 +777,9 @@ function downloadUpdated(){
     html=html.replace(/\/\*RAW_START\*\/[\s\S]*?\/\*RAW_END\*\//,'/*RAW_START*/const RAW = '+json+';/*RAW_END*/');
     const blob=new Blob([html],{type:'text/html;charset=utf-8'});
     const a=document.createElement('a');a.href=URL.createObjectURL(blob);
-    a.download='Painel_Bolao_Tranqueiras.html';document.body.appendChild(a);a.click();
+    a.download='index.html';document.body.appendChild(a);a.click();
     setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove();},1000);
-    edstatus('✓ Arquivo baixado! Suba esse arquivo no Netlify/GitHub ou mande no grupo. Ele já abre com os resultados novos.','var(--lime)');
+    edstatus('✓ Versão nova baixada! É só publicá-la no lugar da anterior.','var(--lime)');
     status('Painel baixado com os resultados atuais.','var(--lime)');
   }catch(err){edstatus('Não consegui gerar o arquivo: '+err.message,'var(--coral)');}
 }
